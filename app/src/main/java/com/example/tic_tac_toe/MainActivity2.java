@@ -86,7 +86,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                 b.putInt("玩家2",player2);
                 i.putExtras(b);
                 setResult(101,i);
-                finish();
+                finish(); //把finish拿掉，在這加跳到第三頁的函式，第三頁在加跳回第一頁的函示
                 endGame();
             }
         });
