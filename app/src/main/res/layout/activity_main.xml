@@ -10,16 +10,17 @@
         android:id="@+id/btn_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         android:onClick="開始遊戲"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:text="開始遊戲"
-        android:textSize="50sp"/>
+        android:textSize="50sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.737" />
 
     <TextView
         android:id="@+id/textView"
@@ -47,6 +48,14 @@
             android:layout_height="wrap_content"
             android:textSize="30sp"
             android:hint="請輸入玩家名稱"/>
+
+        <EditText
+            android:id="@+id/ed_t1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Say Something" />
 
         <RadioButton
             android:id="@+id/radioButton1"
@@ -79,6 +88,14 @@
             android:textSize="30sp"
             android:hint="請輸入玩家名稱" />
 
+        <EditText
+            android:id="@+id/ed_t2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="Say Something" />
+
         <RadioButton
             android:id="@+id/radioButton3"
             android:layout_width="wrap_content"
@@ -95,5 +112,7 @@
             android:checked="true"
             android:textSize="25sp"
             android:text="O" />
+
     </RadioGroup>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,6 +31,8 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
 
     private String p1_name;
     private String p2_name;
+    private String p1_msg;
+    private String p2_msg;
 
     private TextView textViewPlayer1;
     private TextView textViewPlayer2;
@@ -52,6 +54,8 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         language = intent.getIntExtra("language",0);
         p1_name = bundle.getString("p1_name");
         p2_name = bundle.getString("p2_name");
+        p1_msg = bundle.getString("p1_msg");
+        p2_msg = bundle.getString("p2_msg");
 
         updatePointsText();
 
@@ -80,14 +84,30 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         btn_end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent();
+                String winName;
+                String winMsg;
+                if(player1Points>player2Points){
+                    winName = p1_name;
+                    winMsg = p1_msg;
+                } else if (player1Points<player2Points) {
+                    winName = p2_name;
+                    winMsg = p2_msg;
+                }
+                else{
+                    winName = "No one wins";
+                    winMsg = "draw!";
+                }
+
+
+                Intent intent = new Intent(MainActivity2.this, MainActivity3.class);
                 Bundle b = new Bundle();
-                b.putInt("玩家1",player1);
-                b.putInt("玩家2",player2);
-                i.putExtras(b);
-                setResult(101,i);
-                finish(); //把finish拿掉，在這加跳到第三頁的函式，第三頁在加跳回第一頁的函示
+                b.putString("winName", winName);
+                b.putString("winMsg", winMsg);
+
+                intent.putExtras(b);
+                startActivity(intent);
                 endGame();
+                finish();
             }
         });
 

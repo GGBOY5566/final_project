@@ -2,6 +2,8 @@ package com.example.tic_tac_toe;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.*;
@@ -20,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private int player1;
     private int player2;
 
-    private EditText ed_p1,ed_p2;
+    private EditText ed_p1,ed_p2,ed_t1,ed_t2;
     private RadioGroup rg1,rg2;
     private RadioButton rb1,rb2,rb3,rb4;
 
@@ -28,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
     private String p1_name;
     private String p2_name;
 
+    private String p1_msg;
+    private String p2_msg;
+
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
         ed_p1 = findViewById(R.id.ed_p1);
         ed_p2 = findViewById(R.id.ed_p2);
+        ed_t1 = findViewById(R.id.ed_t1);
+        ed_t2 = findViewById(R.id.ed_t2);
 
         rg1 = findViewById(R.id.radioGroup);
         rg2 = findViewById(R.id.radioGroup1);
@@ -118,40 +127,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 p1_name = ed_p1.getText().toString();
                 p2_name = ed_p2.getText().toString();
+                p1_msg = ed_t1.getText().toString();
+                p2_msg = ed_t2.getText().toString();
                 Intent intent = new Intent(MainActivity.this,MainActivity2.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("p1", p1);
                 bundle.putInt("language", language);
                 bundle.putString("p1_name", p1_name);
                 bundle.putString("p2_name", p2_name);
+                bundle.putString("p1_msg", p1_msg);
+                bundle.putString("p2_msg", p2_msg);
                 intent.putExtras(bundle);
-                startActivityForResult(intent,1);
+                startActivity(intent);
+
             }
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data ){
-        super.onActivityResult(requestCode, resultCode, data);
-        if(data == null) return;
-
-        if(requestCode == 1) {
-            if (resultCode == 101) {
-                Bundle b = data.getExtras();
-                player1 = b.getInt("玩家1");
-                player2 = b.getInt("玩家2");
-                if (language == 0) {
-                    ed_p1.setHint("請輸入玩家名稱");
-                    ed_p2.setHint("請輸入玩家名稱");
-                    textView.setText("PK結果\n" + p1_name + " 得分 : " + player1 + "\n" + p2_name + " 得分 : " + player2);
-                }
-                else if (language == 1) {
-                    ed_p1.setHint("Please enter Player name");
-                    ed_p2.setHint("Please enter Player name");
-                    textView.setText("PK Result\n" + p1_name + " Score : " + player1 + "\n" + p2_name + " Score : " + player2);
-                }
-            }
-        }
     }
 
 }
